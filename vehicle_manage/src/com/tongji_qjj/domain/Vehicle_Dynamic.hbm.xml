@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.tongji_qjj.domain">
+	<class name="Vehicle_Dynamic" table="vehicle_dynamic">
+		<composite-id name="unionID" class="Vehicle_Dynamic$UnionPK">
+			<key-property name="frameID" column="frameID"/>
+			<key-property name="vehicleID" column="vehicleID"/>
+			<generator class="assigned"/>
+		</composite-id>
+		
+		<many-to-one name="staticData" class="Vehicle_Static" column="vehicleID"
+			not-null="true" insert="false" update="false"/>
+		
+		<property name="localX"/>
+		<property name="localY"/>
+		<property name="velocity"/>
+		<property name="acceleration"/>
+		<property name="laneID"/>
+		
+		<property name="preceding"/>
+		<property name="following"/>
+		
+		<property name="spaceHeadway"/>
+		<property name="timeHeadway"/>
+		
+	</class>
+</hibernate-mapping>
