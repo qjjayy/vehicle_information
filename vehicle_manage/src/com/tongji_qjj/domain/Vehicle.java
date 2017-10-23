@@ -1,45 +1,100 @@
 package com.tongji_qjj.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
+
 /**
  * @author qjj<br>
- *         系统中实际使用的车辆类型
+ *         车辆静态属性
  */
-public class Vehicle {
+@Entity(name = "vehicle")
+public class Vehicle implements Serializable {
 
-	public Integer vehicleID; // 主键
+	private static final long serialVersionUID = 3783792794038572229L;
 
-	public float length; // 车长
-	public float width; // 车宽
-	public int vehicleType; // 车的类别
+	@Id
+	private Integer id; // 车辆号（主键）
+	private float length; // 车长
+	private float width; // 车宽
+	@Enumerated(EnumType.ORDINAL)
+	private VehicleType vehicleType; // 车的类别
+	private int totalFrames; // 总的帧数
+	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OrderBy("index")
+	private List<VehicleDynamic> dynamicDatum;
+	@OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OrderBy("index")
+	private List<RelationPosition> relationPositions;
 
-	public float localX; // 横坐标
-	public float localY; // 纵坐标
-	public float velocity; // 速度
-	public float acceleration; // 加速度
-
-	public int laneID; // 所在车道号
-	public Vehicle preceding; // 前方车辆
-	public Vehicle following; // 后方车辆
-	public float spaceHeadway; // 前方空间间隔
-	public float timeHeadway; // 前方时间间隔
-
-	public Vehicle(Integer vehicleID, float length, float width, int vehicleType, float localX, float localY,
-			float velocity, float acceleration, int laneID, Vehicle preceding, Vehicle following, float spaceHeadway,
-			float timeHeadway) {
+	public Vehicle() {
 		super();
-		this.vehicleID = vehicleID;
+		this.dynamicDatum = new ArrayList<VehicleDynamic>();
+		this.relationPositions = new ArrayList<RelationPosition>();
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public float getLength() {
+		return length;
+	}
+
+	public void setLength(float length) {
 		this.length = length;
+	}
+
+	public float getWidth() {
+		return width;
+	}
+
+	public void setWidth(float width) {
 		this.width = width;
+	}
+
+	public VehicleType getVehicleType() {
+		return vehicleType;
+	}
+
+	public void setVehicleType(VehicleType vehicleType) {
 		this.vehicleType = vehicleType;
-		this.localX = localX;
-		this.localY = localY;
-		this.velocity = velocity;
-		this.acceleration = acceleration;
-		this.laneID = laneID;
-		this.preceding = preceding;
-		this.following = following;
-		this.spaceHeadway = spaceHeadway;
-		this.timeHeadway = timeHeadway;
+	}
+
+	public int getTotalFrames() {
+		return totalFrames;
+	}
+
+	public void setTotalFrames(int totalFrames) {
+		this.totalFrames = totalFrames;
+	}
+
+	public List<VehicleDynamic> getDynamicDatum() {
+		return dynamicDatum;
+	}
+
+	public void setDynamicDatum(List<VehicleDynamic> dynamicDatum) {
+		this.dynamicDatum = dynamicDatum;
+	}
+
+	public List<RelationPosition> getRelationPositions() {
+		return relationPositions;
+	}
+
+	public void setRelationPositions(List<RelationPosition> relationPositions) {
+		this.relationPositions = relationPositions;
 	}
 
 }
