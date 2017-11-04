@@ -2,6 +2,7 @@ package com.tongji_qjj.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -23,14 +24,17 @@ public class VehicleDynamic implements Serializable {
 
 	@Id
 	@GeneratedValue
-	private Integer index; // 序号
+	private Integer hisIndex; // 序号
+	@Id
+	@Column(name = "vehicle_id", insertable = false, updatable = false)
+	private Integer vehicleId; // 关联车辆号
 	private float localX; // 横坐标
 	private float localY; // 纵坐标
 	private float velocity; // 速度
 	private float acceleration; // 加速度
 	private float spaceHeadway; // 前方空间间隔
 	private float timeHeadway; // 前方时间间隔
-	@Id
+
 	@ManyToOne
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
@@ -40,20 +44,20 @@ public class VehicleDynamic implements Serializable {
 	}
 
 	public VehicleDynamicPK getId() {
-		return new VehicleDynamicPK(index, vehicle);
+		return new VehicleDynamicPK(hisIndex, vehicleId);
 	}
 
 	public void setId(VehicleDynamicPK id) {
-		this.index = id.getIndex();
-		this.vehicle = id.getVehicle();
+		this.hisIndex = id.getHisIndex();
+		this.vehicleId = id.getVehicleId();
 	}
 
-	public Integer getIndex() {
-		return index;
+	public Integer getHisIndex() {
+		return hisIndex;
 	}
 
-	public void setIndex(Integer index) {
-		this.index = index;
+	public void setHisIndex(Integer hisIndex) {
+		this.hisIndex = hisIndex;
 	}
 
 	public float getLocalX() {

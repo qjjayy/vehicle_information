@@ -2,38 +2,67 @@ package com.tongji_qjj.domain.pk;
 
 import java.io.Serializable;
 
-import com.tongji_qjj.domain.Vehicle;
-
 public class VehicleDynamicPK implements Serializable {
 
 	private static final long serialVersionUID = 6906364741003410087L;
 
-	private int index;
-	private Vehicle vehicle;
+	private Integer hisIndex;
+	private Integer vehicleId;
 
 	public VehicleDynamicPK() {
 	}
 
-	public VehicleDynamicPK(int index, Vehicle vehicle) {
+	public VehicleDynamicPK(int hisIndex, int vehicleId) {
 		super();
-		this.index = index;
-		this.vehicle = vehicle;
+		this.hisIndex = hisIndex;
+		this.vehicleId = vehicleId;
 	}
 
-	public int getIndex() {
-		return index;
+	public Integer getHisIndex() {
+		return hisIndex;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
+	public void setHisIndex(Integer hisIndex) {
+		this.hisIndex = hisIndex;
 	}
 
-	public Vehicle getVehicle() {
-		return vehicle;
+	public Integer getVehicleId() {
+		return vehicleId;
 	}
 
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public void setVehicleId(Integer vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hisIndex == null) ? 0 : hisIndex.hashCode());
+		result = prime * result + ((vehicleId == null) ? 0 : vehicleId.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		VehicleDynamicPK other = (VehicleDynamicPK) obj;
+		if (hisIndex == null) {
+			if (other.hisIndex != null)
+				return false;
+		} else if (!hisIndex.equals(other.hisIndex))
+			return false;
+		if (vehicleId == null) {
+			if (other.vehicleId != null)
+				return false;
+		} else if (!vehicleId.equals(other.vehicleId))
+			return false;
+		return true;
 	}
 
 }

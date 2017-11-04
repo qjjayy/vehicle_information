@@ -32,6 +32,7 @@ public class Environment implements Serializable {
 	private int preceding; // 前方车辆号
 	private int following; // 后方车辆号
 	private float spaceHeadway; // 前方空间间隔
+	private float timeHeadway; // 前方时间间隔
 
 	public Environment() {
 		super();
@@ -124,6 +125,14 @@ public class Environment implements Serializable {
 
 	public void setSpaceHeadway(float spaceHeadway) {
 		this.spaceHeadway = spaceHeadway;
+	}
+
+	public float getTimeHeadway() {
+		return timeHeadway;
+	}
+
+	public void setTimeHeadway(float timeHeadway) {
+		this.timeHeadway = timeHeadway;
 	}
 
 }
