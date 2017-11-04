@@ -1,0 +1,7 @@
+location: 302, 203
+location: 382, 244
+location: 469, 293
+location: 577, 355
+location: 722, 435
+location: 768, 460
+location: 830, 501

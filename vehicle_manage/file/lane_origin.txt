@@ -1,0 +1,13 @@
+location: 217, 136
+location: 388, 238
+location: 541, 328
+location: 659, 393
+location: 778, 458
+location: 841, 490
+location: 891, 515
+location: 930, 535
+location: 969, 553
+location: 999, 567
+location: 1047, 587
+location: 1145, 627
+location: 1224, 657
